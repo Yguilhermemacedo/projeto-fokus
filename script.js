@@ -6,8 +6,17 @@ const longoBt = document.querySelector('.app__card-button--longo')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
+const startPauseBt = document.querySelector('#start-pause')
+
 const musicaFocoInput = document.querySelector('#alternar-musica')
 const musica = new Audio('/sons/luna-rise-part-one.mp3')
+const toqueIniciar =new Audio('/sons/play.wav')
+const toquePause = new Audio('/sons/pause.mp3')
+const toqueFinalizar = new Audio('/sons/beep.mp3') 
+
+
+let tempoDecorridoEmSegundos = 5
+let intervaloId;
 musica.loop = true;
 // Colocando evento de música com JavaScript, após clicar no botão da página 'música'
 musicaFocoInput.addEventListener('change', () => {
@@ -61,4 +70,31 @@ function alterarContexto (contexto){
         default:
             break;
     }
+}
+
+const contagemRgressiva = () => {
+    if(tempoDecorridoEmSegundos <= 0){
+        zerar()
+        alert('Tempo Finalizado')
+        return
+    }
+    tempoDecorridoEmSegundos -= 1
+    console.log('Temporizador: ' + tempoDecorridoEmSegundos)
+}
+
+startPauseBt.addEventListener('click', iniciarOuPausar)
+startPauseBt.addEventListener('change', () => {
+
+})
+function iniciarOuPausar() {
+    if(intervaloId){
+        zerar()
+        return
+    }
+    intervaloId = setInterval(contagemRgressiva, 1000)
+}
+
+function zerar(){
+    clearInterval(intervaloId)
+    intervaloId =null
 }
