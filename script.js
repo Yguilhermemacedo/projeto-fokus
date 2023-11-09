@@ -1,3 +1,4 @@
+// alert('Para melhor experiência, coloque fone de ouvido.')
 const html = document.querySelector('html')
 const focoBt = document.querySelector('.app__card-button--foco')
 const curtoBt = document.querySelector('.app__card-button--curto')
@@ -5,6 +6,18 @@ const longoBt = document.querySelector('.app__card-button--longo')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
+const musicaFocoInput = document.querySelector('#alternar-musica')
+const musica = new Audio('/sons/luna-rise-part-one.mp3')
+musica.loop = true;
+// Colocando evento de música com JavaScript, após clicar no botão da página 'música'
+musicaFocoInput.addEventListener('change', () => {
+    if(musica.pause){
+        musica.play()
+    } else{
+        musica.paused()
+    }
+})
+
 // Colocando evento de click nos botões acima
 focoBt.addEventListener('click', () =>{
     alterarContexto('foco')
