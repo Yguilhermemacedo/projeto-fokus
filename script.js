@@ -18,12 +18,12 @@ const musicaFocoInput = document.querySelector('#alternar-musica')
 const musica = new Audio('/sons/luna-rise-part-one.mp3')
 
 
-let tempoDecorridoEmSegundos = 1500
+let tempoDecorridoEmSegundos = 1500;
 let intervaloId;
 musica.loop = true;
 // Colocando evento de música com JavaScript, após clicar no botão da página 'música'
 musicaFocoInput.addEventListener('change', () => {
-    if(musica.pause){
+    if(musica.paused){
         musica.play()
     } else{
         musica.paused()
@@ -87,7 +87,7 @@ const contagemRgressiva = () => {
         return
     }
     tempoDecorridoEmSegundos -= 1
-    mostrarTempo(   )
+    mostrarTempo()
 }
 
 startPauseBt.addEventListener('click', iniciarOuPausar)
